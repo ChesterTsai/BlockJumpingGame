@@ -1,0 +1,118 @@
+[gd_scene load_steps=14 format=3 uid="uid://dfps6yswpako7"]
+
+[ext_resource type="Script" path="res://main.gd" id="1_dlrgn"]
+[ext_resource type="Texture2D" uid="uid://dwojdwudgcdod" path="res://OptionsIcon/Normal.png" id="2_h72y1"]
+[ext_resource type="Texture2D" uid="uid://dfl1losghyi0a" path="res://OptionsIcon/pressed.png" id="3_v4i0o"]
+[ext_resource type="Texture2D" uid="uid://dp60cbu6pydki" path="res://OptionsIcon/hover.png" id="4_n855r"]
+[ext_resource type="Texture2D" uid="uid://crv5u0dxvjg0g" path="res://ThanksIcon/normal.png" id="5_ki05k"]
+[ext_resource type="Texture2D" uid="uid://k3waggyjjc5n" path="res://ThanksIcon/pressed.png" id="6_ppyem"]
+[ext_resource type="Texture2D" uid="uid://bj1tf4baq5kl6" path="res://ThanksIcon/hover.png" id="6_pxgb6"]
+[ext_resource type="Texture2D" uid="uid://cmd5cq5bxn668" path="res://BugReportIcon/normal.png" id="8_gd0xl"]
+[ext_resource type="Texture2D" uid="uid://dx01xt70yg3w2" path="res://BugReportIcon/pressed.png" id="9_gkatt"]
+[ext_resource type="Texture2D" uid="uid://d4npp4wl7q2km" path="res://BugReportIcon/hover.png" id="10_cllgc"]
+[ext_resource type="Texture2D" uid="uid://daw5rd8ti7576" path="res://LangugeIcon/normal.png" id="11_ar4t5"]
+[ext_resource type="Texture2D" uid="uid://bbhpegwmg47wr" path="res://LangugeIcon/pressed.png" id="12_cj7rx"]
+[ext_resource type="Texture2D" uid="uid://o3edkpu7x7mg" path="res://LangugeIcon/hover.png" id="13_y67xd"]
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_dlrgn")
+
+[node name="PLay" type="Button" parent="."]
+offset_left = 192.0
+offset_top = 144.0
+offset_right = 960.0
+offset_bottom = 286.0
+pivot_offset = Vector2(410, 73)
+tooltip_text = "點擊以開始遊戲"
+theme_override_font_sizes/font_size = 75
+text = "開始遊戲"
+icon_alignment = 1
+
+[node name="Quit" type="Button" parent="."]
+offset_left = 195.0
+offset_top = 389.0
+offset_right = 960.0
+offset_bottom = 531.0
+pivot_offset = Vector2(410, 73)
+tooltip_text = "點擊以離開遊戲"
+theme_override_font_sizes/font_size = 75
+text = "離開遊戲"
+icon_alignment = 1
+
+[node name="SettingsButton" type="TextureButton" parent="."]
+offset_left = 1048.0
+offset_top = 536.0
+offset_right = 1120.0
+offset_bottom = 608.0
+texture_normal = ExtResource("2_h72y1")
+texture_pressed = ExtResource("3_v4i0o")
+texture_hover = ExtResource("4_n855r")
+
+[node name="SettingsLabel" type="Label" parent="SettingsButton"]
+layout_mode = 0
+offset_top = 80.0
+offset_right = 72.0
+offset_bottom = 103.0
+text = "設定"
+horizontal_alignment = 1
+
+[node name="Credit" type="TextureButton" parent="."]
+offset_left = 32.0
+offset_top = 536.0
+offset_right = 104.0
+offset_bottom = 608.0
+texture_normal = ExtResource("5_ki05k")
+texture_pressed = ExtResource("6_ppyem")
+texture_hover = ExtResource("6_pxgb6")
+
+[node name="CreditLabel" type="Label" parent="Credit"]
+layout_mode = 0
+offset_top = 80.0
+offset_right = 72.0
+offset_bottom = 104.0
+text = "感謝名單"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BugReport" type="TextureButton" parent="."]
+offset_left = 768.0
+offset_top = 536.0
+offset_right = 840.0
+offset_bottom = 608.0
+texture_normal = ExtResource("8_gd0xl")
+texture_pressed = ExtResource("9_gkatt")
+texture_hover = ExtResource("10_cllgc")
+
+[node name="BugReportLabel" type="Label" parent="BugReport"]
+layout_mode = 0
+offset_top = 80.0
+offset_right = 72.0
+offset_bottom = 106.0
+text = "BUG回報"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Languge" type="TextureButton" parent="."]
+offset_left = 312.0
+offset_top = 536.0
+offset_right = 384.0
+offset_bottom = 608.0
+texture_normal = ExtResource("11_ar4t5")
+texture_pressed = ExtResource("12_cj7rx")
+texture_hover = ExtResource("13_y67xd")
+
+[node name="LangugeLabel" type="Label" parent="Languge"]
+layout_mode = 0
+offset_top = 79.0
+offset_right = 72.0
+offset_bottom = 104.0
+text = "語言"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="PLay" to="." method="_on_p_lay_pressed"]
+[connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="SettingsButton" to="." method="_on_texture_button_pressed"]
+[connection signal="pressed" from="Credit" to="." method="_on_thanks_pressed"]
+[connection signal="pressed" from="BugReport" to="." method="_on_bug_report_pressed"]
+[connection signal="pressed" from="Languge" to="." method="_on_languge_pressed"]

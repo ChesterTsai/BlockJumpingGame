@@ -1,0 +1,134 @@
+[gd_scene load_steps=9 format=3 uid="uid://cs3fnb7kmd1k3"]
+
+[ext_resource type="Script" path="res://world.gd" id="1_7l4i3"]
+[ext_resource type="Script" path="res://Camera2D.gd" id="3_24wll"]
+[ext_resource type="PackedScene" uid="uid://d1ogg51vneb2n" path="res://Player/Player.tscn" id="3_j60s8"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_n81hw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ykpcx"]
+size = Vector2(1468, 70)
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_02wa6"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_x4p5l"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_vnsic"]
+
+[node name="World" type="Node2D"]
+script = ExtResource("1_7l4i3")
+
+[node name="Void" type="Sprite2D" parent="."]
+self_modulate = Color(0, 0.368627, 0.372549, 1)
+position = Vector2(572, 500)
+scale = Vector2(1704, 64)
+texture = SubResource("CanvasTexture_n81hw")
+
+[node name="Floor" type="StaticBody2D" parent="."]
+position = Vector2(-240, 400)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
+position = Vector2(784, 120)
+shape = SubResource("RectangleShape2D_ykpcx")
+
+[node name="Sprite2D" type="Sprite2D" parent="Floor"]
+self_modulate = Color(0.0705882, 0.196078, 1, 1)
+position = Vector2(782.5, 119.5)
+scale = Vector2(1467, 71)
+texture = SubResource("CanvasTexture_02wa6")
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("3_j60s8")]
+position = Vector2(578, 184)
+
+[node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
+position = Vector2(0, -184)
+script = ExtResource("3_24wll")
+
+[node name="Menu" type="Button" parent="CharacterBody2D/Camera2D"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -385.98
+offset_top = -32.0
+offset_right = 380.02
+offset_bottom = 42.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(382, 32)
+theme_override_font_sizes/font_size = 40
+text = "回到主選單"
+
+[node name="Back" type="Button" parent="CharacterBody2D/Camera2D"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -385.98
+offset_top = -152.0
+offset_right = 380.02
+offset_bottom = -78.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(382, 32)
+theme_override_font_sizes/font_size = 40
+text = "回到遊戲"
+
+[node name="FOVwarn" type="Button" parent="CharacterBody2D/Camera2D"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -222.5
+offset_top = -152.0
+offset_right = 222.5
+offset_bottom = -76.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(221, 35)
+tooltip_text = "確定"
+theme_override_font_sizes/font_size = 40
+text = "錯誤：FOV超過允許範圍"
+
+[node name="Dead" type="Button" parent="CharacterBody2D/Camera2D"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -222.98
+offset_top = -32.0
+offset_right = 222.02
+offset_bottom = 44.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(221, 35)
+theme_override_font_sizes/font_size = 40
+text = "復活"
+
+[node name="DeathMessage" type="Label" parent="CharacterBody2D/Camera2D/Dead"]
+layout_mode = 0
+offset_left = -3.0
+offset_top = -120.0
+offset_right = 445.0
+offset_bottom = -46.0
+text = "你死了。"
+label_settings = SubResource("LabelSettings_x4p5l")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Info" type="Label" parent="CharacterBody2D/Camera2D"]
+clip_contents = true
+offset_left = -570.0
+offset_top = -320.0
+offset_right = -325.0
+offset_bottom = -223.0
+label_settings = SubResource("LabelSettings_vnsic")
+
+[connection signal="pressed" from="CharacterBody2D/Camera2D/Menu" to="." method="_on_menu_pressed"]
+[connection signal="pressed" from="CharacterBody2D/Camera2D/Back" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="CharacterBody2D/Camera2D/FOVwarn" to="CharacterBody2D/Camera2D" method="_on_fo_vwarn_pressed"]
+[connection signal="pressed" from="CharacterBody2D/Camera2D/Dead" to="CharacterBody2D/Camera2D" method="_on_dead_pressed"]

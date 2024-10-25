@@ -1,0 +1,43 @@
+[gd_scene load_steps=5 format=3 uid="uid://c88endl6626xa"]
+
+[ext_resource type="Script" path="res://langugeSettings.gd" id="1_1rib3"]
+[ext_resource type="Texture2D" uid="uid://cpao6k0my385l" path="res://BackToMenuIcon/normal.png" id="2_noq3x"]
+[ext_resource type="Texture2D" uid="uid://bge83575ojs74" path="res://BackToMenuIcon/pressed.png" id="3_mkhr6"]
+[ext_resource type="Texture2D" uid="uid://bjqggavw8ufpi" path="res://BackToMenuIcon/hover.png" id="4_s83gi"]
+
+[node name="Languges" type="Node2D"]
+script = ExtResource("1_1rib3")
+
+[node name="OptionButton" type="OptionButton" parent="."]
+offset_left = 128.0
+offset_top = 128.0
+offset_right = 1024.0
+offset_bottom = 256.0
+theme_override_font_sizes/font_size = 70
+alignment = 1
+selected = 0
+item_count = 2
+popup/item_0/text = "English"
+popup/item_1/text = "中文(繁體)"
+popup/item_1/id = 1
+
+[node name="BackToMainMenu" type="TextureButton" parent="."]
+offset_left = 24.0
+offset_top = 512.0
+offset_right = 96.0
+offset_bottom = 584.0
+texture_normal = ExtResource("2_noq3x")
+texture_pressed = ExtResource("3_mkhr6")
+texture_hover = ExtResource("4_s83gi")
+
+[node name="BackToMainLabel" type="Label" parent="BackToMainMenu"]
+layout_mode = 0
+offset_top = 80.0
+offset_right = 72.0
+offset_bottom = 103.0
+text = "回到主選單"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="item_selected" from="OptionButton" to="." method="_on_option_button_item_selected"]
+[connection signal="pressed" from="BackToMainMenu" to="." method="_on_back_to_main_menu_pressed"]

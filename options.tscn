@@ -1,0 +1,130 @@
+[gd_scene load_steps=5 format=3 uid="uid://71kep2no6tuq"]
+
+[ext_resource type="Script" path="res://options.gd" id="1_0mwoi"]
+[ext_resource type="Texture2D" uid="uid://cpao6k0my385l" path="res://BackToMenuIcon/normal.png" id="1_tu32u"]
+[ext_resource type="Texture2D" uid="uid://bge83575ojs74" path="res://BackToMenuIcon/pressed.png" id="2_3betb"]
+[ext_resource type="Texture2D" uid="uid://bjqggavw8ufpi" path="res://BackToMenuIcon/hover.png" id="3_mwgk8"]
+
+[node name="Options" type="Node2D"]
+script = ExtResource("1_0mwoi")
+
+[node name="BackToMainMenu" type="TextureButton" parent="."]
+offset_left = 24.0
+offset_top = 512.0
+offset_right = 96.0
+offset_bottom = 584.0
+texture_normal = ExtResource("1_tu32u")
+texture_pressed = ExtResource("2_3betb")
+texture_hover = ExtResource("3_mwgk8")
+
+[node name="BackToMainLabel" type="Label" parent="BackToMainMenu"]
+layout_mode = 0
+offset_top = 80.0
+offset_right = 72.0
+offset_bottom = 103.0
+text = "回到主選單"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Resolution" type="OptionButton" parent="."]
+offset_left = 64.0
+offset_top = 128.0
+offset_right = 384.0
+offset_bottom = 192.0
+theme_override_font_sizes/font_size = 30
+alignment = 1
+selected = 0
+item_count = 5
+popup/item_0/text = "(選擇畫質)"
+popup/item_1/text = "854x480"
+popup/item_1/id = 1
+popup/item_2/text = "1280x720"
+popup/item_2/id = 2
+popup/item_3/text = "1600x900"
+popup/item_3/id = 3
+popup/item_4/text = "1920x1080"
+popup/item_4/id = 4
+
+[node name="Vsync" type="OptionButton" parent="."]
+offset_left = 416.0
+offset_top = 128.0
+offset_right = 736.0
+offset_bottom = 192.0
+theme_override_font_sizes/font_size = 30
+alignment = 1
+selected = 1
+item_count = 3
+popup/item_0/text = "關閉垂直同步"
+popup/item_1/text = "垂直同步 (傳統)"
+popup/item_1/id = 1
+popup/item_2/text = "垂直同步 (自適應)"
+popup/item_2/id = 2
+
+[node name="FPS" type="OptionButton" parent="."]
+offset_left = 192.0
+offset_top = 320.0
+offset_right = 512.0
+offset_bottom = 384.0
+theme_override_font_sizes/font_size = 30
+alignment = 1
+selected = 4
+item_count = 7
+popup/item_0/text = "20 FPS"
+popup/item_1/text = "30 FPS"
+popup/item_1/id = 1
+popup/item_2/text = "48 FPS"
+popup/item_2/id = 2
+popup/item_3/text = "60 FPS"
+popup/item_3/id = 3
+popup/item_4/text = "120 FPS"
+popup/item_4/id = 4
+popup/item_5/text = "144 FPS"
+popup/item_5/id = 5
+popup/item_6/text = "無限制"
+popup/item_6/id = 6
+
+[node name="windowMode" type="OptionButton" parent="."]
+offset_left = 768.0
+offset_top = 128.0
+offset_right = 1088.0
+offset_bottom = 192.0
+theme_override_font_sizes/font_size = 30
+alignment = 1
+selected = 0
+item_count = 4
+popup/item_0/text = "視窗模式"
+popup/item_1/text = "最大化視窗"
+popup/item_1/id = 1
+popup/item_2/text = "全螢幕模式"
+popup/item_2/id = 2
+popup/item_3/text = "無邊框視窗"
+popup/item_3/id = 3
+
+[node name="ResetButton" type="Button" parent="."]
+offset_left = 640.0
+offset_top = 320.0
+offset_right = 960.0
+offset_bottom = 384.0
+theme_override_font_sizes/font_size = 30
+text = "重製設定"
+
+[node name="ResetWarning" type="PopupMenu" parent="ResetButton"]
+title = "你確定要重製設定嗎"
+initial_position = 2
+size = Vector2i(500, 140)
+visible = true
+borderless = false
+unfocusable = true
+theme_override_font_sizes/font_size = 30
+item_count = 2
+item_0/text = "是"
+item_1/text = "否"
+item_1/id = 1
+
+[connection signal="pressed" from="BackToMainMenu" to="." method="_on_back_to_main_menu_pressed"]
+[connection signal="item_selected" from="Resolution" to="." method="_on_resolution_item_selected"]
+[connection signal="item_selected" from="Vsync" to="." method="_on_vsync_item_selected"]
+[connection signal="item_selected" from="FPS" to="." method="_on_fps_item_selected"]
+[connection signal="item_selected" from="windowMode" to="." method="_on_window_mode_item_selected"]
+[connection signal="pressed" from="ResetButton" to="." method="_on_reset_button_pressed"]
+[connection signal="id_pressed" from="ResetButton/ResetWarning" to="." method="_on_reset_warning_id_pressed"]

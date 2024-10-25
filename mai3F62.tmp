@@ -1,0 +1,45 @@
+[gd_scene load_steps=5 format=3 uid="uid://dfps6yswpako7"]
+
+[ext_resource type="Script" path="res://main.gd" id="1_dlrgn"]
+[ext_resource type="Texture2D" uid="uid://dwojdwudgcdod" path="res://OptionsIcon/Normal.png" id="2_h72y1"]
+[ext_resource type="Texture2D" uid="uid://dfl1losghyi0a" path="res://OptionsIcon/pressed.png" id="3_v4i0o"]
+[ext_resource type="Texture2D" uid="uid://dp60cbu6pydki" path="res://OptionsIcon/hover.png" id="4_n855r"]
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_dlrgn")
+
+[node name="PLay" type="Button" parent="."]
+offset_left = 192.0
+offset_top = 144.0
+offset_right = 1014.0
+offset_bottom = 286.0
+pivot_offset = Vector2(410, 73)
+tooltip_text = "點擊以開始遊戲"
+theme_override_font_sizes/font_size = 75
+text = "開始遊戲"
+icon_alignment = 1
+
+[node name="Quit" type="Button" parent="."]
+offset_left = 195.0
+offset_top = 389.0
+offset_right = 1017.0
+offset_bottom = 531.0
+pivot_offset = Vector2(410, 73)
+tooltip_text = "點擊以離開遊戲"
+theme_override_font_sizes/font_size = 75
+text = "離開遊戲"
+icon_alignment = 1
+
+[node name="TextureButton" type="TextureButton" parent="."]
+offset_left = 1070.0
+offset_top = 567.0
+offset_right = 1142.0
+offset_bottom = 639.0
+tooltip_text = "設定"
+texture_normal = ExtResource("2_h72y1")
+texture_pressed = ExtResource("3_v4i0o")
+texture_hover = ExtResource("4_n855r")
+
+[connection signal="pressed" from="PLay" to="." method="_on_p_lay_pressed"]
+[connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="TextureButton" to="." method="_on_texture_button_pressed"]
